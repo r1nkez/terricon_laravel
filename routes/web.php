@@ -35,6 +35,7 @@ Route::get('/skills', function () {
         'skills' => $skills
     ]);
 });
+//daedff
 
 Route::get('/portfolio', function () {
     $title = "Портфолио Terricon";
