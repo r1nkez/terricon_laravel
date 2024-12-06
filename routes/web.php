@@ -6,13 +6,13 @@ use App\Models\Skill;
 
 use App\Models\Portfolio;
 
+use App\Http\Controllers\TestController;
+
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/test', function () {
-    return 123;
-});
+Route::get('/test/{id}', [TestController::class, 'show']);
 
 Route::get('/skills/{category}', function ($category) {
     $title = "Навыки в категории $category";
@@ -25,17 +25,10 @@ Route::get('/skills/{category}', function ($category) {
     ]);
 });
 
-Route::get('/skills', function () {
-    $title = "Навыки";
-
-    $skills = Skill::all();
-    
-    return view('skills',[
-        'title' => $title,
-        'skills' => $skills
-    ]);
-});
+Route::get('/skills', [TestController::class, 'ReplaceSkills']);
 //daedff
+
+Route::get('/skills-json/', [TestController::class, 'getAllSkills'])->middleware('auth');
 
 Route::get('/portfolio', function () {
     $title = "Портфолио Terricon";
