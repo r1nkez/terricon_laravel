@@ -16,8 +16,12 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
 
-                    <x-nav-link href="{{ route('skillCreate') }}" :active="request()->routeIs('dashboard')">
+                    <x-nav-link href="{{ route('skillCreate') }}" :active="request()->routeIs('skillCreate')">
                         {{ __('Скиллы') }}
+                    </x-nav-link>
+
+                    <x-nav-link href="{{ route('portCreate') }}" :active="request()->routeIs('portCreate')">
+                        {{ __('Портфолио') }}
                     </x-nav-link>
                 </div>
             </div>

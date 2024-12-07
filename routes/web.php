@@ -10,13 +10,19 @@ use App\Http\Controllers\TestController;
 
 use App\Http\Controllers\SkillController;
 
+use App\Http\Controllers\PortController;
+
 Route::get('/', function () {
     return view('welcome');
 });
 
 Route::get('/create-skill', [SkillController::class, 'renderCreatePage'])
     ->middleware('auth')
-    ->name ('skillCreate');
+    ->name('skillCreate');
+
+Route::post('/create-skill', [SkillController::class, 'createSkill'])
+    ->middleware('auth')
+    ->name('skillCreate.post');
 
 Route::get('/test/{id}', [TestController::class, 'show']);
 
@@ -36,16 +42,10 @@ Route::get('/skills', [TestController::class, 'ReplaceSkills']);
 
 Route::get('/skills-json/', [TestController::class, 'getAllSkills'])->middleware('auth');
 
-Route::get('/portfolio', function () {
-    $title = "Портфолио Terricon";
+Route::get('/portfolio', [PortController::class, 'renderPortPage'])->middleware('auth')->name('portCreate');
 
-    $portfolio = Portfolio::all();
-  
-    return view('portfolio',[
-        'title' => $title,
-        'portfolio' => $portfolio
-    ]);
-});
+Route::post('/portfolio', [PortController::class, 'createPost'])->middleware('auth')->name('portCreate.post');
+
 
 Route::get('/portfolio/{category}', function ($category) {
     $title = "Портфолио Terricon";

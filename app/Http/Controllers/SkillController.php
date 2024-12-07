@@ -8,12 +8,22 @@ use App\Models\Skill;
 
 class SkillController extends Controller
 {
-    public function renderCreatePage (Request $request) 
+    public function renderCreatePage ()
+    {
+        $skills = Skill::all();
+
+        return view('createSkill', [
+            'skills'=>$skills
+        ]);
+    }
+
+    public function createSkill (Request $request)
     {
         $data = $request->all();
 
         $skill = Skill::create($data);
 
         return back();
+
     }
 }
