@@ -7,6 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class Portfolio extends Model
 {
     protected $fillable = [
-        'name', 'price', 'val'
+        'name', 'price', 'val', 'category'
     ];
 }
