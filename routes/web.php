@@ -8,9 +8,15 @@ use App\Models\Portfolio;
 
 use App\Http\Controllers\TestController;
 
+use App\Http\Controllers\SkillController;
+
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/create-skill', [SkillController::class, 'renderCreatePage'])
+    ->middleware('auth')
+    ->name ('skillCreate');
 
 Route::get('/test/{id}', [TestController::class, 'show']);
 
@@ -21,7 +27,7 @@ Route::get('/skills/{category}', function ($category) {
     
     return view('skills',[
         'title' => $title,
-        'skills' => $skills
+        'skills' => $skills 
     ]);
 });
 
