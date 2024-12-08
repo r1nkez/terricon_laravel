@@ -73,10 +73,9 @@ Route::middleware([
     'auth',
     'roleChecker:admin'
 ])->prefix('admin')->group(function () {
-    Route::get('/users', function () {
-        Route::get('/users', [AdminController::class, 'renderUsers']);
+        Route::get('/users', [AdminController::class, 'renderUsers'])->name('renderUsers');
+        Route::post('/users', [AdminController::class, 'editUsers'])->name('admin.users.post');
     });
-});
 
 Route::middleware([
     'auth:sanctum',

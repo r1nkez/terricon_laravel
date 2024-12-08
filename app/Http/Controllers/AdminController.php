@@ -12,6 +12,17 @@ class AdminController extends Controller
     {
         $users = User::all();
         
-        return view('admin.users')->with('users', $users);
+        return view('admin.users', [
+            'users' => $users
+        ]);
+    }
+
+    public function editUsers (Request $request)
+    {
+        $data = $request->all();
+
+        User::update($data);
+
+        return redirect('renderUsers');
     }
 }

@@ -26,4 +26,26 @@ class PortController extends Controller
 
         return back();
     }
+
+    public function getApiPort () 
+    {
+        $portfolio = Portfolio::all();
+
+        return response()->json([
+            'data' => $portfolio,
+            'count_data' => $portfolio->count()
+        ]);
+    }
+
+    public function createApiPort (Request $request)
+    {
+        $data = $request->all();
+        $portfolio = null;
+
+        if(isset($data['name'])){
+            $portfolio = Portfolio::create($data);
+        }
+
+        return back();
+    }
 }
