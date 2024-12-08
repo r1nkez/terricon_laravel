@@ -13,11 +13,11 @@ class PortController extends Controller
         $portfolio = Portfolio::all();
 
         return view('createPort', [
-            'portfolio'=>$portfolio
+            'portfolio' => $portfolio
         ]);
     }
 
-    public function createPost (Request $request)
+    public function createPort (Request $request)
 
     {
         $data = $request->all();

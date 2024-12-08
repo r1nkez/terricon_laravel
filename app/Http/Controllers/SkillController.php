@@ -13,7 +13,31 @@ class SkillController extends Controller
         $skills = Skill::all();
 
         return view('createSkill', [
-            'skills'=>$skills
+            'skills' => $skills
+        ]);
+    }
+
+    public function getApiSkills ()
+    {
+        $skills = Skill::all();
+
+        return response()->json([
+            'data' => $skills,
+            'count_data' => $skills->count()
+        ]);
+    }
+
+    public function createApiSkill ()
+    {
+        $data = request()->all();
+        $skill = null;
+
+        if(isset($data['name'])){
+            $skill = Skill::create($data);
+        }
+
+        return response()->json([
+            'data' => $skill
         ]);
     }
 

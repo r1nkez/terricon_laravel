@@ -12,6 +12,9 @@ use App\Http\Controllers\SkillController;
 
 use App\Http\Controllers\PortController;
 
+use App\Http\Controllers\AdminController;
+
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -44,7 +47,7 @@ Route::get('/skills-json/', [TestController::class, 'getAllSkills'])->middleware
 
 Route::get('/portfolio', [PortController::class, 'renderPortPage'])->middleware('auth')->name('portCreate');
 
-Route::post('/portfolio', [PortController::class, 'createPost'])->middleware('auth')->name('portCreate.post');
+Route::post('/portfolio', [PortController::class, 'createPort'])->middleware('auth')->name('portCreate.post');
 
 
 Route::get('/portfolio/{category}', function ($category) {
@@ -64,6 +67,15 @@ Route::get('/portfolio/{category}', function ($category) {
 
 Route::get('/new', function () {
     return view('new');
+});
+
+Route::middleware([
+    'auth',
+    'roleChecker:admin'
+])->prefix('admin')->group(function () {
+    Route::get('/users', function () {
+        Route::get('/users', [AdminController::class, 'renderUsers']);
+    });
 });
 
 Route::middleware([
