@@ -8,21 +8,25 @@ use App\Models\User;
 
 class AdminController extends Controller
 {
-    public function renderUsers ()
+    public function renderEditUsers ($id)
     {
-        $users = User::all();
+        $user = User::find($id);
+        if(!$user) {
+            return abort(404);
+        }
         
-        return view('admin.users', [
-            'users' => $users
-        ]);
+        return view('admin.edit')->with('user', $user);
     }
-
-    public function editUsers (Request $request)
+    public function editUser ($id) 
     {
-        $data = $request->all();
-
-        User::update($data);
-
-        return redirect('renderUsers');
+        $user = User::find($id);
+        if(!$user) {
+            return abort(404);
+        }
+        $user->name = request()->get('name', $user->name);
+        $user->email = request()->get('email', $user->email);
+        $user->role = request()->get('role', $user->role);
+        $user->save();
+        return redirect( route('renderEditUsers', $user->id) );
     }
 }
