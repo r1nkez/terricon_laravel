@@ -41,7 +41,7 @@ Route::get('/skills/{category}', function ($category) {
 });
 
 Route::get('/skills', [TestController::class, 'ReplaceSkills']);
-//daedff
+
 
 Route::get('/skills-json/', [TestController::class, 'getAllSkills'])->middleware('auth');
 
@@ -73,9 +73,26 @@ Route::middleware([
     'auth',
     'roleChecker:admin'
 ])->prefix('admin')->group(function () {
-        Route::get('/users', [AdminController::class, 'renderUsers'])->name('renderUsers');
-        Route::get('/users{id}', [AdminController::class, 'renderEditUsers'])->name('renderEditUsers');
+    Route::get('/users', [AdminController::class, 'renderUsers'])
+    ->name('renderUsers');
+
+
+    Route::get('/users/{id}', [AdminController::class, 'renderEditUsers'])
+        ->name('renderEditUsers');
+
+    Route::post('/users/{id}', [AdminController::class, 'editUser'])
+    ->name('editUser');
+    Route::get('/add-user', [AdminController::class, 'renderAddUser'])
+        ->name('renderAddUser');
+
+    Route::post('/add-user', [AdminController::class, 'addUser'])
+        ->name('addUser');
     });
+
+
+Route::get('/pages/{name}', function ($name) {
+    return view("pages.$name");
+})->name('pages');
 
 Route::middleware([
     'auth:sanctum',
