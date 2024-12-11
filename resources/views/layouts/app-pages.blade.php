@@ -28,7 +28,9 @@
 		<div class="container_12">
 			<div class="grid_12">
 				<div class="wrapper">
-					<a href="/" class="logo">TERRICON</a>
+					<a href="/">
+                        <img src="/images/logo.gif" width="170" />
+                    </a>
 					<nav>
 						<ul class="menu">
 							<li><a href="/">Главная</a></li>

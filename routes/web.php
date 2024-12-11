@@ -15,9 +15,9 @@ use App\Http\Controllers\PortController;
 use App\Http\Controllers\AdminController;
 
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [AdminController::class, 'renderWelcomePage'])->name('welcome');
+
+Route::get('/pages/{name}', [AdminController::class, 'renderPublicPages'])->name('pages');
 
 Route::get('/create-skill', [SkillController::class, 'renderCreatePage'])
     ->middleware('auth')
@@ -90,9 +90,7 @@ Route::middleware([
     });
 
 
-Route::get('/pages/{name}', function ($name) {
-    return view("pages.$name");
-})->name('pages');
+
 
 Route::middleware([
     'auth:sanctum',
