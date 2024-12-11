@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Страница</title>
+<title>@yield('title')</title>
 <meta charset="utf-8"><link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="/css/reset.css" type="text/css" media="screen">
     <link rel="stylesheet" href="/css/grid.css" type="text/css" media="screen">

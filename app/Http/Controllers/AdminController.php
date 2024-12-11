@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\Skill;
 use App\Models\Category;
 use App\Models\Post;
+use App\Models\Portfolio;
 
 class AdminController extends Controller
 {
@@ -25,12 +26,29 @@ class AdminController extends Controller
         $data = [];
         switch(strtoupper($name)) {
             case 'WORKS':
-                $data = [];
+                $data['portfolios'] = Portfolio::all();
                 break;
+
+            case 'POST':
+                $post_id = request()->get('post_id', '');
+
+                if($post_id) {
+                    $data['post'] = Post::find($post_id);
+
+                    if(!$data['post']) {
+                        return abort(404);
+                    }
+                } else {
+                    return abort(404);
+                }
+
+                break;
+
             case 'BLOG':
 
                 $category_id = request()->get('category_id', '');
                 $data['categories'] = Category::all();
+
                 if($category_id) {
                     $data['posts'] = Post::where('category_id', $category_id)->get(); 
                 } else {

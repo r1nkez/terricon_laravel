@@ -20,44 +20,15 @@
 				</div>
 				<div class="wrapper">
 					<div class="grid_12">
-						<h2 class="h-pad1">My Works</h2>
+						<h2 class="h-pad1">Портфолио</h2>
 						<ul class="wrapper works">
+							@foreach($portfolios as $p)
 							<li class="grid_4 alpha">
-								<figure><img src="/images/works1.jpg" alt=""></figure>
-								<p><a href="#" class="link">Project 1</a></p>
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit, seiusmod tempor incididunt ut labore et dolore magna.
-								<p><a href="#" class="button">Read more</a></p>
+								<figure><img src="/images/works{{ $p->id }}.jpg" alt=""></figure>
+								<p>{{ $p->name }} | {{ $p->price }} {{ $p->val }} | {{ $p->category }} </p>
+								<p><a href="#" class="button">Узнать больше</a></p>
 							</li>
-							<li class="grid_4">
-								<figure><img src="/images/works2.jpg" alt=""></figure>
-								<p><a href="#" class="link">Project 2</a></p>
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit, seiusmod tempor incididunt ut labore et dolore magna.
-								<p><a href="#" class="button">Read more</a></p>
-							</li>
-							<li class="grid_4 omega">
-								<figure><img src="/images/works3.jpg" alt=""></figure>
-								<p><a href="#" class="link">Project 3</a></p>
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit, seiusmod tempor incididunt ut labore et dolore magna.
-								<p><a href="#" class="button">Read more</a></p>
-							</li>
-							<li class="grid_4 alpha">
-								<figure><img src="/images/works4.jpg" alt=""></figure>
-								<p><a href="#" class="link">Project 4</a></p>
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit, seiusmod tempor incididunt ut labore et dolore magna.
-								<p><a href="#" class="button">Read more</a></p>
-							</li>
-							<li class="grid_4">
-								<figure><img src="/images/works5.jpg" alt=""></figure>
-								<p><a href="#" class="link">Project 5</a></p>
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit, seiusmod tempor incididunt ut labore et dolore magna.
-								<p><a href="#" class="button">Read more</a></p>
-							</li>
-							<li class="grid_4 omega">
-								<figure><img src="/images/works6.jpg" alt=""></figure>
-								<p><a href="#" class="link">Project 6</a></p>
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit, seiusmod tempor incididunt ut labore et dolore magna.
-								<p><a href="#" class="button">Read more</a></p>
-							</li>
+							@endforeach
 						</ul>
 					</div>
 				</div>
