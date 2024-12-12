@@ -47,12 +47,13 @@ class AdminController extends Controller
             case 'BLOG':
 
                 $category_id = request()->get('category_id', '');
+                $count_posts = request()->get('count_posts', 10);
                 $data['categories'] = Category::all();
 
                 if($category_id) {
-                    $data['posts'] = Post::where('category_id', $category_id)->get(); 
+                    $data['posts'] = Post::where('category_id', $category_id)->paginate($count_posts); 
                 } else {
-                    $data['posts'] = Post::all();
+                    $data['posts'] = Post::paginate($count_posts);
                 }
                 
                 break;

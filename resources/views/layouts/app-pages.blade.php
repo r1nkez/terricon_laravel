@@ -38,6 +38,14 @@
 							<li><a href="{{ route('pages', 'clients') }}">Клиенты</a></li>
 							<li><a href="{{ route('pages', 'blog') }}">Блог</a></li>
 							<li><a href="{{ route('pages', 'contacts') }}">Контакты</a></li>
+
+                            @auth
+                                <li><a href="{{ route('login') }}">✅ Профиль</a></li>
+                            @else
+                                <li><a href="{{ route('login') }}">✅ Логин</a></li>
+                            @endauth
+
+
 						</ul>
 					</nav>
 				</div>

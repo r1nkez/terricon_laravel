@@ -28,6 +28,9 @@
                         <x-nav-link href="{{ route('renderUsers') }}" :active="request()->routeIs('renderUsers')">
                             {{ __('Пользователи') }}
                         </x-nav-link>
+                        <x-nav-link href="{{ route('renderCategory') }}" :active="request()->routeIs('renderCategory')">
+                            {{ __('Категории') }}
+                        </x-nav-link>
                     @endif
                 </div>
             </div>

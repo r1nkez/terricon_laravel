@@ -14,11 +14,23 @@ use App\Http\Controllers\PortController;
 
 use App\Http\Controllers\AdminController;
 
+use App\Http\Controllers\BlogController;
+
+use App\Http\Controllers\CategoryController;
+
 
 Route::get('/', [AdminController::class, 'renderWelcomePage'])->name('welcome');
 
 Route::get('/pages/{name}', [AdminController::class, 'renderPublicPages'])->name('pages');
 
+/**
+     * Система комментариев
+     */
+
+Route::post('/add-comment', [BlogController::class, 'addComment'])->name('addComment');
+Route::get('/delete-comment/{id}', [BlogController::class, 'deleteComment'])->name('deleteComment');
+Route::post('/edit-comment/{id}', [BlogController::class, 'editComment'])->name('editComment');
+ 
 Route::get('/create-skill', [SkillController::class, 'renderCreatePage'])
     ->middleware('auth')
     ->name('skillCreate');
@@ -87,11 +99,26 @@ Route::middleware([
 
     Route::post('/add-user', [AdminController::class, 'addUser'])
         ->name('addUser');
+    
+    
+
+    Route::get('/category', [CategoryController::class, 'renderCategory'])
+    ->name('renderCategory');
+
+    Route::get('/category/{id}', [CategoryController::class, 'renderEditCategory'])
+        ->name('renderEditCategory');
+
+    Route::post('/category/{id}', [CategoryController::class, 'editCategory'])
+    ->name('editCategory');
+    Route::get('/add-category', [CategoryController::class, 'renderAddCategory'])
+        ->name('renderAddCategory');
+
+    Route::post('/add-category', [CategoryController::class, 'addCategory'])
+        ->name('addCategory');
     });
 
-
-
-
+    
+    
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),

@@ -23,7 +23,17 @@
 							<div class="grid_8 alpha">
 								<div class="grid-inner">
 								<h2 class="h-pad h-indent">Последние посты ({{ count($posts) }})</h2>
-
+								<form action="{{ route('pages', 'blog') }}" method="GET">
+									@if(request()->get('category_id'))
+										<input type="hidden" name="category_id" value="{{ request()->get('category_id', '') }}">
+									@endif
+									<select onchange="this.parentNode.submit();" name="count_posts">
+										<option value="5">5 постов</option>
+										<option value="10">10 постов</option>
+										<option value="25">25 постов</option>
+										<option value="50">50 постов</option>
+									</select>
+								</form>
 								@if(count($posts))
 									@foreach($posts as $post)
 										<div class="block">
@@ -32,15 +42,16 @@
 													<div class="info">
 														<div class="wrapper">
 															<div class="date">
-																<span>may</span><strong>15</strong>
+																<span>{{ date('M', strtotime($post->created_at)); }}</span>
+																<strong>{{ date('d', strtotime($post->created_at)); }}</strong>
 															</div>
 															<a href="{{ route('pages', ['name' => 'post', 'post_id' => $post->id]) }}"><strong>{{ $post->name }}</strong></a><br>
-														Author: <strong>{{ $post->user_id }}</strong>
+														Автор: <strong>{{ \App\Models\User::getName($post->user_id) }}</strong>
 														</div>
 														
 													</div>
 													<div class="comments">
-														No comments<span></span>
+														({{ $post->getComments()->count(); }}) комментариев<span></span>
 													</div>
 												</div>
 												<figure><a href="{{ route('pages', ['name' => 'post', 'post_id' => $post->id]) }}"><img src="{{ $post->preview }}" alt=""></a><figure>
@@ -49,6 +60,7 @@
 											</div>
 										</div>
 									@endforeach
+									{{ $posts->appends($_GET)->links() }}
 								@else 
 									<p>Постов в данной категории не найдено.</p>
 								@endif
@@ -64,7 +76,7 @@
 												<li><a href="{{ route('pages', [
 													'name' => 'blog',
 													'category_id' => $category->id
-												]) }}">{{ $category->name }}</a></li>
+												]) }}">{{ $category->name }} ({{ \App\Models\Post::where('category_id', $category->id)->count(); }})</a></li>
 											@endforeach
 										@endif
 									</ul>
