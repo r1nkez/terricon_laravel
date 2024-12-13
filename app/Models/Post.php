@@ -9,7 +9,7 @@ use App\Models\Comment;
 class Post extends Model
 {
     protected $fillable = [
-        'name', 'description', 'preview', 'user_id', 'category_id'
+        'name', 'description', 'preview', 'user_id', 'category_id', 'created_at'
     ];
 
     public function getComments() {

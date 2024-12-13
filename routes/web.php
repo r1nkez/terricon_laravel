@@ -7,16 +7,12 @@ use App\Models\Skill;
 use App\Models\Portfolio;
 
 use App\Http\Controllers\TestController;
-
 use App\Http\Controllers\SkillController;
-
 use App\Http\Controllers\PortController;
-
 use App\Http\Controllers\AdminController;
-
 use App\Http\Controllers\BlogController;
-
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\PostController;
 
 
 Route::get('/', [AdminController::class, 'renderWelcomePage'])->name('welcome');
@@ -107,14 +103,20 @@ Route::middleware([
 
     Route::get('/category/{id}', [CategoryController::class, 'renderEditCategory'])
         ->name('renderEditCategory');
-
     Route::post('/category/{id}', [CategoryController::class, 'editCategory'])
     ->name('editCategory');
     Route::get('/add-category', [CategoryController::class, 'renderAddCategory'])
         ->name('renderAddCategory');
-
     Route::post('/add-category', [CategoryController::class, 'addCategory'])
         ->name('addCategory');
+
+
+    Route::get('/post/{id}', [PostController::class, 'renderEditPost'])
+        ->name('renderEditPost');
+    Route::post('/post/{id}', [PostController::class, 'editPost'])
+    ->name('editPost');
+    Route::delete('/post/{id}', [PostController::class, 'deletePost'])
+    ->name('deletePost');
     });
 
     
