@@ -4,9 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Portfolio extends Model
+class Lead extends Model
 {
     protected $fillable = [
-        'name', 'price', 'val', 'category', 'image'
+        'name', 'email', 'contacts', 'description'
     ];
 }

@@ -20,16 +20,23 @@
                         {{ __('Скиллы') }}
                     </x-nav-link>
 
-                    <x-nav-link href="{{ route('portCreate') }}" :active="request()->routeIs('portCreate')">
-                        {{ __('Портфолио') }}
-                    </x-nav-link>
+                    
 
                     @if (auth()->user()->role === 'admin')
+                        <x-nav-link href="{{ route('portCreate') }}" :active="request()->routeIs('portCreate')">
+                            {{ __('Портфолио') }}
+                        </x-nav-link>
                         <x-nav-link href="{{ route('renderUsers') }}" :active="request()->routeIs('renderUsers')">
                             {{ __('Пользователи') }}
                         </x-nav-link>
                         <x-nav-link href="{{ route('renderCategory') }}" :active="request()->routeIs('renderCategory')">
                             {{ __('Категории') }}
+                        </x-nav-link>
+                        <x-nav-link href="{{ route('renderLeads') }}" :active="request()->routeIs('renderLeads')">
+                            {{ __('Лиды') }}
+                        </x-nav-link>
+                        <x-nav-link href="{{ route('renderSlidersPage') }}" :active="request()->routeIs('renderSlidersPage')">
+                            {{ __('Слайды') }}
                         </x-nav-link>
                     @endif
                 </div>

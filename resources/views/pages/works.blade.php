@@ -24,7 +24,7 @@
 						<ul class="wrapper works">
 							@foreach($portfolios as $p)
 							<li class="grid_4 alpha">
-								<figure><img src="/images/works{{ $p->id }}.jpg" alt=""></figure>
+								<figure><img src="/storage/{{ $p->image }}" width="250" alt=""></figure>
 								<p>{{ $p->name }} | {{ $p->price }} {{ $p->val }} | {{ $p->category }} </p>
 								<p><a href="#" class="button">Узнать больше</a></p>
 							</li>

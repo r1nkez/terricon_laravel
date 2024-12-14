@@ -10,27 +10,17 @@
             <div class="container_12">
                 <div class="grid_12">
                 <div class="camera_wrap camera_azure_skin" id="camera_wrap_1">
-            <div data-src="/images/slide1.jpg">
-                <div class="camera_caption fadeIn">
-                    <h2>Мои последние проекты</h2>
-                        Изучите мои последние работы ниже
-                        <p><a href="{{route('pages', 'works')}}" class="button">Изучить работы</a></p>
+                    @foreach($sliders as $slider)
+                    <div data-src="storage/{{ $slider->image }}">
+                        <div class="camera_caption fadeIn">
+                            <h2>{{ $slider->title }}</h2>
+                                {{ $slider->description }}
+                                <p><a href="{{ $slider->btn_link }}" class="button">{{ $slider->btn_name }}</a></p>
+                        </div>
                 </div>
+                    @endforeach
             </div>
-            <div data-src="/images/slide2.jpg">
-                <div class="camera_caption fadeIn">
-                    <h2>biz.Power</h2>
-                        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat uis aute irure dolor reprehender.
-                        <p><a href="#" class="button">More Info</a></p>
-                </div>
-            </div>
-            <div data-src="/images/slide3.jpg">
-                <div class="camera_caption fadeIn">
-                    <h2>Development</h2>
-                        Voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat roident, sunt in culpa qui officia.
-                        <p><a href="#" class="button">More Info</a></p>
-                </div>
-            </div>
+            
             </div>
             </div>
         </div>
@@ -65,9 +55,9 @@
                             </div>
                         </div>
                         <div class="grid_4">
-                            <h2>Testimonials</h2>
+                            <h2>Мой девиз</h2>
                             <div class="testimonial-block">
-                                <em>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua enim ad minim veniam, quis nostrud.</em><p><strong>— Patrick Pool, Romonson</strong></p>
+                                <em>Да</em><p><strong>— Цой Константин</strong></p>
                             </div>
                         </div>
                     </div>

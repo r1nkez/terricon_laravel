@@ -26,14 +26,20 @@
 				</div>
 				<div class="grid_4 prefix_1">
 					<h2>Обратная связь</h2>
-					<form id="contact-form" method="POST">
+					<form action="{{ route('addLead') }}" id="contact-form" method="POST">
+						@csrf
 						<fieldset>
-							<label><input type="text" name="name" placeholder="Ваше Имя">	</label>
-							<label><input type="email" name="email" placeholder="Ваш E-mail">	</label>
+							<label><input type="text" name="name" required placeholder="*Ваше Имя">	</label>
+							<label><input type="email" name="email" required placeholder="*Ваш E-mail">	</label>
 							<label><input type="text" name="contacts" placeholder="Иной контакт">	</label>
 							<textarea name="description" placeholder="Комментарий..."></textarea>
 							<a href="#" class="button1" onClick="document.getElementById('contact-form').reset()">Очистить</a>
 							<a href="#" class="button1" onClick="document.getElementById('contact-form').submit()">Отправить</a>
+							@isset($_GET['createdLead'])
+								<p>
+									<b>Заявка успешно создана.</b>
+								</p>
+							@endisset
 						</fieldset>
 					</form>
 				</div>
