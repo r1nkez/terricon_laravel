@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Добавление Пользователя') }}
+            {{ __('Добавление Поста') }}
         </h2>
     </x-slot>
 
@@ -10,7 +10,7 @@
            
             <div class="md:grid md:grid-cols-3 md:gap-6">
                 <div class="mt-5 md:mt-0 md:col-span-2">
-                    <form action="{{ route('addUser') }}" method="POST">
+                    <form action="{{ route('addPost') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         
                         <div class="px-4 py-5 bg-white dark:bg-gray-800 sm:p-6 shadow {{ isset($actions) ? 'sm:rounded-tl-md sm:rounded-tr-md' : 'sm:rounded-md' }}">
@@ -23,21 +23,24 @@
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-4">
-                                    <x-label for="email" value="{{ __('Email') }}" />
-                                    <x-input name="email" id="email" type="email" placeholder="E-mail" class="mt-1 block w-full" wire:model="state.email" required />
-                                    <x-input-error for="email" class="mt-2" />
+                                    <x-label for="description" value="{{ __('description') }}" />
+                                    <x-input name="description" id="description" type="description" placeholder="description" class="mt-1 block w-full" wire:model="state.description" required />
+                                    <x-input-error for="description" class="mt-2" />
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-4">
-                                    <x-label for="role" value="" />
-                                    <x-input name="role" id="role" type="text" placeholder="Role" class="mt-1 block w-full" wire:model="state.role" required />
-                                    <x-input-error for="role" class="mt-2" />
+                                    <input type="file" accept=".jpg,.png,.jpeg" name="preview" />
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-4">
-                                    <x-label for="password" value="" />
-                                    <x-input name="password" id="password" type="password" placeholder="Пароль..." class="mt-1 block w-full" wire:model="state.password" required />
-                                    <x-input-error for="role" class="mt-2" />
+                                    <x-label for="category_id" value="" />
+                                    <x-input name="category_id" id="password" type="number" placeholder="category_id..." class="mt-1 block w-full" wire:model="state.category_id" required />
+                                    <x-input-error for="category_id" class="mt-2" />
+                                </div>
+                                <div class="col-span-6 sm:col-span-4">
+                                    <x-label for="user_id" value="User ID" />
+                                    <x-input name="user_id" id="user_id" type="text" placeholder="Введите ID пользователя" class="mt-1 block w-full" />
+                                    <x-input-error for="user_id" class="mt-2" />
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-4">

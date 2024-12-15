@@ -10,7 +10,7 @@
            
             <div class="md:grid md:grid-cols-3 md:gap-6">
                 <div class="mt-5 md:mt-0 md:col-span-2">
-                    <form action="{{ route('editPost', $post->id) }}" method="POST">
+                    <form action="{{ route('editPost', $post->id) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         
                         <div class="px-4 py-5 bg-white dark:bg-gray-800 sm:p-6 shadow {{ isset($actions) ? 'sm:rounded-tl-md sm:rounded-tr-md' : 'sm:rounded-md' }}">
@@ -38,6 +38,10 @@
                                     <x-label for="date" value="" />
                                     <x-input name="date" value="{{ $post->created_at->format('Y-m-d') }}" id="date" type="date" placeholder="date" class="mt-1 block w-full"  />
                                     <x-input-error for="date" class="mt-2" />
+                                </div>
+                                <div class="col-span-6 sm:col-span-4">
+                                    <input type="file" accept=".jpg,.png,.jpeg" name="image" />
+                                    <img src="/storage/{{ $post->preview }}" width="300" />
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-4">

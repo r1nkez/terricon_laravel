@@ -32,6 +32,9 @@
                         <x-nav-link href="{{ route('renderCategory') }}" :active="request()->routeIs('renderCategory')">
                             {{ __('Категории') }}
                         </x-nav-link>
+                        <x-nav-link href="{{ route('renderPost') }}" :active="request()->routeIs('renderPost')">
+                            {{ __('Посты') }}
+                        </x-nav-link>
                         <x-nav-link href="{{ route('renderLeads') }}" :active="request()->routeIs('renderLeads')">
                             {{ __('Лиды') }}
                         </x-nav-link>

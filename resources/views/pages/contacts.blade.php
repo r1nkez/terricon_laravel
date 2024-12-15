@@ -18,8 +18,8 @@
 							<div class="contacts">
 								<strong class="title">Terricon</strong>
 								Telegram: r1nkez<br>
-								Телефон: +7 123 456 78 90<br>
-								E-mail: <a href="#" class="link">dartapchihilus@gmail.com</a> 
+								Телефон: {{ \App\Models\Fielder::ff('phone') }}<br>
+								E-mail: <a href="mailto:{{ \App\Models\Fielder::ff('email') }}" class="link">{{ \App\Models\Fielder::ff('email') }}</a> 
 							</div>		
 						</div>
 					</div>

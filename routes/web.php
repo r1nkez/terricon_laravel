@@ -111,7 +111,12 @@ Route::middleware([
     Route::post('/add-category', [CategoryController::class, 'addCategory'])
         ->name('addCategory');
 
-
+    Route::get('/posts', [PostController::class, 'renderPost'])
+    ->name('renderPost');
+    Route::get('/add-post', [PostController::class, 'renderAddPost'])
+    ->name('renderAddPost');
+    Route::post('/add-post', [PostController::class, 'addPost'])
+    ->name('addPost');
     Route::get('/post/{id}', [PostController::class, 'renderEditPost'])
         ->name('renderEditPost');
     Route::post('/post/{id}', [PostController::class, 'editPost'])

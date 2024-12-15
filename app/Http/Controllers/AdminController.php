@@ -316,6 +316,7 @@ class AdminController extends Controller
         return view('editPort')->with('port', $port);
     }
 
+
     public function editPort ($id)
     {
         $port = Portfolio::find($id);

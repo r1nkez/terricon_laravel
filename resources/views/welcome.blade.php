@@ -31,9 +31,9 @@
                     <div class="grid_12">
                         <div class="block">
                             <div class="info-block">
-                                <a href="https://t.me/r1nkez" rel="nofollow" >Заказать</a> Разработку у меня по скидке
+                               {{ \App\Models\Fielder::ff('slogan') }}
                             </div>
-                            <a href="http://bayguzin.ru/assets/files/2014/08/biznes.zip" class="button" rel="nofollow">Заказать!</a>
+                            <a href="https://t.me/r1nkez" class="button" rel="nofollow">Заказать!</a>
                         </div>
                     </div>
                 </div>
@@ -44,7 +44,7 @@
                             <h2>Привет!</h2>
                                 <div class="wrapper">
                                     <figure class="img-indent"><img src="/images/image1.jpg" alt=""></figure>
-                                    Меня зовут Цой Константин и я новичок в web-разработке
+                                    {{ \App\Models\Fielder::ff('about_me') }}
                                 </div>
                                 <p class="pad">Мои скиллы: </p>
                                 @if($skills)
@@ -57,7 +57,7 @@
                         <div class="grid_4">
                             <h2>Мой девиз</h2>
                             <div class="testimonial-block">
-                                <em>Да</em><p><strong>— Цой Константин</strong></p>
+                                {{ \App\Models\Fielder::ff('deviz') }}
                             </div>
                         </div>
                     </div>

@@ -4,9 +4,50 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Post;
+use App\Models\User;
+
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
+    
+    public function renderPost() {
+        return view('admin.post.post')
+            ->with('posts', Post::all())
+            ->with('users', User::all());
+    }
+
+    public function renderAddPost ()
+    {
+        return view('admin.post.add');
+    }
+
+    public function addPost() {
+        $name = request()->get('name', '');
+        $preview = request()->file('preview');   
+        $description = request()->get('description', '');
+        $category_id = request()->get('category_id', '');
+        $user_id = request()->get('user_id', '');
+
+
+        $fileName = '';
+
+        if($preview) {
+            $fileName = time() . '_' . $preview->getClientOriginalName();
+            $fileName = $preview->storeAs('uploads', $fileName, 'public');
+        }
+
+        Post::create([
+            'name' => $name,
+            'description' => $description,
+            'preview' => $fileName,
+            'category_id' => $category_id,
+            'user_id' => $user_id
+        ]);
+
+        return redirect( route('renderAddPost') );
+    }
+
     public function renderEditPost ($id) {
         
         $post = Post::find($id);
@@ -46,12 +87,13 @@ class PostController extends Controller
 {
     $post = Post::find($id);
 
-    if (!$post) {
-        return abort(404);
-    }
+        if($post) {
+            $imagePath = $post->preview;
+            $post->delete();
 
-    $post->delete();
+            Storage::disk('public')->delete($imagePath);
+        }
 
-    return redirect()->route('dashboard')->with('success', 'Пост успешно удалён');
+        return back();
 }
 }

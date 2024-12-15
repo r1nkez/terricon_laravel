@@ -12,9 +12,9 @@
 						<div class="block">
 							<div class="info-block">
 								<div class="info-block">
-									<a href="https://t.me/r1nkez" rel="nofollow" >Заказать</a> Разработку у меня по скидке
+									{{ \App\Models\Fielder::ff('slogan') }}
 								</div>
-								<a href="http://bayguzin.ru/assets/files/2014/08/biznes.zip" class="button" rel="nofollow">Заказать!</a>
+								<a href=https://t.me/r1nkez class="button" rel="nofollow">Заказать!</a>
 						</div>
 					</div>
 				</div>
