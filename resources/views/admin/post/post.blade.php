@@ -19,6 +19,7 @@
                             <tr>
                                 <th>ID</th>
                                 <th>name</th>
+                                <th>description</th>
                                 <th>Preview</th>
                                 <th>Author</th>
                                 <th>Category</th>
@@ -30,6 +31,7 @@
                                     <tr>
                                         <td>{{ $post->id }}</td>
                                         <td>{{ $post->name }}</td>
+                                        <td>{{ $post->description }}</td>
                                         <td>
                                             <img src="/storage/{{ $post->preview }}" width="200" />
                                         </td>

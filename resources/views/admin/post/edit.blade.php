@@ -40,7 +40,7 @@
                                     <x-input-error for="date" class="mt-2" />
                                 </div>
                                 <div class="col-span-6 sm:col-span-4">
-                                    <input type="file" accept=".jpg,.png,.jpeg" name="image" />
+                                    <input type="file" accept=".jpg,.png,.jpeg" name="preview" />
                                     <img src="/storage/{{ $post->preview }}" width="300" />
                                 </div>
 

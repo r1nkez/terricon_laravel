@@ -76,8 +76,18 @@ class PostController extends Controller
             $post->forceFill([
                 'created_at' => $date . ' 00:00:00',
         ]);
+
+        $preview = request()->file('preview');
+            if($preview) {
+                Storage::disk('public')->delete($post->preview);
+                
+                $fileName = time() . '_' . $preview->getClientOriginalName();
+                
+                $fileName = $preview->storeAs('uploads', $fileName, 'public');
+                $post->preview = $fileName;
+            }
     }
-        $post->update();
+        $post->save();
 
         return redirect()->route('renderEditPost', $id);    
         
